@@ -79,4 +79,16 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/update-form")
+    public String updateForm(HttpSession session, Model model) {
+        // 로그인을 한 상태기 때문에 세션에 id, memberId가 들어있고
+        // 여기에 세션이 있는 id를 가져온다.
+        Long updateId = (Long) session.getAttribute("LongId");
+        System.out.println("updateId = " + updateId);
+        // DB에서 해당 회원의 정보를 가져와서 그 정보를 가지고 update.jsp로 이동
+        MemberDTO memberDTO = memberService.findById(updateId);
+        model.addAttribute("updateMember", memberDTO);
+        return "update";
+    }
+
 }

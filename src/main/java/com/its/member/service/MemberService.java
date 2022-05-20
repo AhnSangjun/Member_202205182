@@ -37,6 +37,10 @@ public class MemberService {
 
     public boolean delete(Long id) {
         int deleteResult = memberRepository.delete(id);
-        if
+        if (deleteResult > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
